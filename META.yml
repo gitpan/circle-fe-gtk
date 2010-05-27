@@ -1,0 +1,36 @@
+---
+abstract: 'L<Gtk2> frontend for the C<Circle> application host'
+author:
+  - 'Paul Evans <leonerd@leonerd.org.uk>'
+configure_requires:
+  Module::Build: 0.36
+generated_by: 'Module::Build version 0.3607'
+license: gpl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: circle-fe-gtk
+provides:
+  Circle::FE::Gtk:
+    file: lib/Circle/FE/Gtk.pm
+    version: 0.01
+  Circle::FE::Gtk::Tab:
+    file: lib/Circle/FE/Gtk/Tab.pm
+  Circle::FE::Gtk::Widget::Box:
+    file: lib/Circle/FE/Gtk/Widget/Box.pm
+  Circle::FE::Gtk::Widget::Entry:
+    file: lib/Circle/FE/Gtk/Widget/Entry.pm
+  Circle::FE::Gtk::Widget::Label:
+    file: lib/Circle/FE/Gtk/Widget/Label.pm
+  Circle::FE::Gtk::Widget::Scroller:
+    file: lib/Circle/FE/Gtk/Widget/Scroller.pm
+requires:
+  Date::Format: 0
+  Glib: 0
+  Gtk2: 0
+  IO::Async: 0.14
+  IO::Async::Loop::Glib: 0
+  Tangence::Connection: 0
+resources:
+  license: http://www.gnu.org/licenses/old-licenses/gpl-1.0.txt
+version: 0.01
