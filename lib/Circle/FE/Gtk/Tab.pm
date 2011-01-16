@@ -5,6 +5,7 @@
 package Circle::FE::Gtk::Tab;
 
 use strict;
+use warnings;
 
 use Glib qw( TRUE FALSE );
 

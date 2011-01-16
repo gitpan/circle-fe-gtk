@@ -13,7 +13,7 @@ name: circle-fe-gtk
 provides:
   Circle::FE::Gtk:
     file: lib/Circle/FE/Gtk.pm
-    version: 0.01
+    version: 0.02
   Circle::FE::Gtk::Tab:
     file: lib/Circle/FE/Gtk/Tab.pm
   Circle::FE::Gtk::Widget::Box:
@@ -30,7 +30,7 @@ requires:
   Gtk2: 0
   IO::Async: 0.14
   IO::Async::Loop::Glib: 0
-  Tangence::Connection: 0
+  Net::Async::Tangence::Client: 0
 resources:
   license: http://www.gnu.org/licenses/old-licenses/gpl-1.0.txt
-version: 0.01
+version: 0.02

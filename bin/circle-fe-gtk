@@ -5,14 +5,12 @@
 #  (C) Paul Evans, 2008-2010 -- leonerd@leonerd.org.uk
 
 use strict;
-
-# Until we have a real CPAN dist...
-use lib ".";
+use warnings;
 
 use Glib qw( TRUE FALSE );
 use Gtk2 qw( init );
 
-use Tangence::Connection;
+use Net::Async::Tangence::Client;
 
 use Circle::FE::Gtk::Tab;
 
@@ -94,7 +92,7 @@ if( !defined $IDENTITY ) {
    $IDENTITY = $ENV{USER} . "@" . $hostname . "/GTK2";
 }
 
-my $conn = Tangence::Connection->new(
+my $conn = Net::Async::Tangence::Client->new(
    identity => $IDENTITY,
 
    on_closed => sub {

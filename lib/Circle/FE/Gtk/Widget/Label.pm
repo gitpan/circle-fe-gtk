@@ -5,6 +5,8 @@
 package Circle::FE::Gtk::Widget::Label;
 
 use strict;
+use warnings;
+
 use constant type => "Label";
 
 sub build

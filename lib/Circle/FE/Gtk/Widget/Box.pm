@@ -5,6 +5,8 @@
 package Circle::FE::Gtk::Widget::Box;
 
 use strict;
+use warnings;
+
 use constant type => "Box";
 
 use Glib qw( TRUE FALSE );

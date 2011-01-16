@@ -12,7 +12,7 @@ my $build = Module::Build->new(
       'Gtk2' => 0,
       'IO::Async' => '0.14',
       'IO::Async::Loop::Glib' => 0,
-      'Tangence::Connection' => 0,
+      'Net::Async::Tangence::Client' => 0,
    },
    license => 'gpl',
    create_makefile_pl => 'traditional',

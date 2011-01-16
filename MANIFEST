@@ -1,5 +1,6 @@
 bin/circle-fe-gtk
 Build.PL
+Changes
 circle-fe-gtk.theme
 lib/Circle/FE/Gtk.pm
 lib/Circle/FE/Gtk/Tab.pm

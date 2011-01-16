@@ -5,6 +5,8 @@
 package Circle::FE::Gtk::Widget::Entry;
 
 use strict;
+use warnings;
+
 use constant type => "Entry";
 
 use Gtk2::Gdk::Keysyms;

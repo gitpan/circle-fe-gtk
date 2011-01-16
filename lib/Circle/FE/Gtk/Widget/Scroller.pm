@@ -5,6 +5,8 @@
 package Circle::FE::Gtk::Widget::Scroller;
 
 use strict;
+use warnings;
+
 use constant type => "Scroller";
 
 use Glib qw( TRUE FALSE );
