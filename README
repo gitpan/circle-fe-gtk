@@ -1,5 +1,5 @@
 NAME
-    "Circle::FE::Gtk" - Gtk2 frontend for the "Circle" application host
+    `Circle::FE::Gtk' - Gtk2 frontend for the `Circle' application host
 
 AUTHOR
     Paul Evans <leonerd@leonerd.org.uk>

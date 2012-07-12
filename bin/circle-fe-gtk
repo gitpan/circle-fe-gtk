@@ -171,85 +171,86 @@ $notebook->signal_connect( 'key-press-event' => sub {
    return 0;
 } );
 
-$conn->connect( $URL,
-   on_root => sub {
-      my ( $rootobj ) = @_;
-
-      $rootobj->call_method(
-         method => "get_session",
-         args   => [ [ 'tabs' ] ],
-         on_result => sub {
-            my ( $session ) = @_;
-
-            $session->watch_property(
-               property => "tabs",
-               on_set => sub {
-                  my ( $objarray ) = @_;
-
-                  # A bug in GTK perhaps? If there's no current page
-                  # selected before we add any, then every page gets the
-                  # 'switch-page' signal fired on it when we add them.
-                  my $old_surpress_switch_page = $surpress_switch_page;
-                  $surpress_switch_page = 1 if $notebook->get_current_page == -1;
-
-                  $notebook->remove_page( 0 ) while $notebook->get_n_pages > 0;
-                  @tabs = ();
-
-                  foreach my $obj ( @$objarray ) {
-                     my $tab = new_tab( $obj );
-                     $notebook->append_page( $tab->get_widget, $tab->get_label );
-                     push @tabs, $tab;
-                  }
-
-                  $surpress_switch_page = $old_surpress_switch_page;
-                  $notebook->show_all;
-               },
-               on_push => sub {
-                  my ( @new ) = @_;
-                  foreach my $obj ( @new ) {
-                     my $tab = new_tab( $obj );
-                     $notebook->append_page( $tab->get_widget, $tab->get_label );
-                     push @tabs, $tab;
-                  }
-                  $notebook->show_all;
-               },
-               on_shift => sub {
-                  my ( $count ) = @_;
-                  # Unlikely to actually be used, but we'll implement it anyway
-                  $notebook->remove_page( 0 ) for 1 .. $count;
-                  shift @tabs;
-               },
-               on_splice => sub {
-                  my ( $index, $count, @objs ) = @_;
-                  
-                  $notebook->remove_page( $index ) for 1 .. $count;
-
-                  my @newtabs;
-
-                  foreach my $i ( 0 .. $#objs ) {
-                     my $tab = new_tab( $objs[$i] );
-                     $notebook->insert_page( $tab->get_widget, $tab->get_label, $index + $i );
-                     push @newtabs, $tab;
-                  }
-
-                  splice @tabs, $index, $count, @newtabs;
-                  $notebook->show_all;
-               },
-               on_move => sub {
-                  my ( $index, $delta ) = @_;
-
-                  $notebook->reorder_child( $tabs[$index]->get_widget, $index + $delta );
-
-                  splice @tabs, $index+$delta, 0, ( splice @tabs, $index, 1, () );
-               },
-               want_initial => 1,
-            );
-         },
-      );
-   },
-);
+$conn->connect_url( $URL );
 
 $mainwin->show_all;
+
+my $rootobj;
+$loop->loop_once until $rootobj = $conn->rootobj;
+
+my $session;
+$rootobj->call_method(
+   method => "get_session",
+   args   => [ [ 'tabs' ] ],
+   on_result => sub {
+      ( $session ) = @_;
+   }
+);
+$loop->loop_once until $session;
+
+$session->watch_property(
+   property => "tabs",
+   on_set => sub {
+      my ( $objarray ) = @_;
+
+      # A bug in GTK perhaps? If there's no current page
+      # selected before we add any, then every page gets the
+      # 'switch-page' signal fired on it when we add them.
+      my $old_surpress_switch_page = $surpress_switch_page;
+      $surpress_switch_page = 1 if $notebook->get_current_page == -1;
+
+      $notebook->remove_page( 0 ) while $notebook->get_n_pages > 0;
+      @tabs = ();
+
+      foreach my $obj ( @$objarray ) {
+         my $tab = new_tab( $obj );
+         $notebook->append_page( $tab->get_widget, $tab->get_label );
+         push @tabs, $tab;
+      }
+
+      $surpress_switch_page = $old_surpress_switch_page;
+      $notebook->show_all;
+   },
+   on_push => sub {
+      my ( @new ) = @_;
+      foreach my $obj ( @new ) {
+         my $tab = new_tab( $obj );
+         $notebook->append_page( $tab->get_widget, $tab->get_label );
+         push @tabs, $tab;
+      }
+      $notebook->show_all;
+   },
+   on_shift => sub {
+      my ( $count ) = @_;
+      # Unlikely to actually be used, but we'll implement it anyway
+      $notebook->remove_page( 0 ) for 1 .. $count;
+      shift @tabs;
+   },
+   on_splice => sub {
+      my ( $index, $count, @objs ) = @_;
+      
+      $notebook->remove_page( $index ) for 1 .. $count;
+
+      my @newtabs;
+
+      foreach my $i ( 0 .. $#objs ) {
+         my $tab = new_tab( $objs[$i] );
+         $notebook->insert_page( $tab->get_widget, $tab->get_label, $index + $i );
+         push @newtabs, $tab;
+      }
+
+      splice @tabs, $index, $count, @newtabs;
+      $notebook->show_all;
+   },
+   on_move => sub {
+      my ( $index, $delta ) = @_;
+
+      $notebook->reorder_child( $tabs[$index]->get_widget, $index + $delta );
+
+      splice @tabs, $index+$delta, 0, ( splice @tabs, $index, 1, () );
+   },
+   want_initial => 1,
+);
 
 $loop->loop_forever;
 

@@ -35,6 +35,7 @@ datemessage={fg:#55F ({fg:#0BB --:--})} {indent Day is now $datestamp}
 
 # Generic events
 response={fg:white -{fg:blue !}-} {indent $text}
+warning={fg:white -{fg:#FB2 {b !}}-} {fg:#FB2 {indent $text}}
 error={fg:white -{fg:red {b !}}-} {bg:#B33 {fg:black $text}}
 status={fg:white -{fg:green {b *}}-} {indent $text}
 
