@@ -1,7 +1,6 @@
 bin/circle-fe-gtk
 Build.PL
 Changes
-circle-fe-gtk.theme
 lib/Circle/FE/Gtk.pm
 lib/Circle/FE/Gtk/Tab.pm
 lib/Circle/FE/Gtk/Widget/Box.pm
@@ -11,6 +10,7 @@ lib/Circle/FE/Gtk/Widget/Scroller.pm
 LICENSE
 Makefile.PL
 MANIFEST			This list of files
+META.json
 META.yml
 README
-META.json
+share/circle-fe-gtk.theme

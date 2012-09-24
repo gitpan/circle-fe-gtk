@@ -5,7 +5,7 @@ WriteMakefile
   'NAME' => 'Circle::FE::Gtk',
   'VERSION_FROM' => 'lib/Circle/FE/Gtk.pm',
   'PREREQ_PM' => {
-                   'Date::Format' => 0,
+                   'File::ShareDir' => '1.00',
                    'Glib' => 0,
                    'Gtk2' => 0,
                    'IO::Async' => '0.14',

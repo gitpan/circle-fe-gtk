@@ -9,6 +9,8 @@ use warnings;
 
 use Glib qw( TRUE FALSE );
 
+use File::ShareDir qw( dist_file );
+
 use Module::Pluggable search_path => "Circle::FE::Gtk::Widget",
                       sub_name => "widgets",
                       require => 1;
@@ -146,7 +148,9 @@ my %theme_vars;
 {
    my $theme_filename;
 
-   foreach ( $ENV{CIRCLE_FE_GTK_THEME}, "$ENV{HOME}/.circle-fe-gtk.theme", "circle-fe-gtk.theme" ) {
+   foreach ( $ENV{CIRCLE_FE_GTK_THEME},
+             "$ENV{HOME}/.circle-fe-gtk.theme", 
+             dist_file( "circle-fe-gtk", "circle-fe-gtk.theme" ) ) {
       defined $_ or next;
       -e $_ or next;
 

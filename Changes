@@ -1,5 +1,9 @@
 Revision history for Circle::FE::Gtk
 
+0.04    CHANGES:
+         * Use strftime from (core) POSIX rather than Date::Format
+         * Install circle-fe-gtk.theme using File::ShareDir
+
 0.03    CHANGES:
          * Updated for Net::Async::Tangence 0.08 so it actually works
 

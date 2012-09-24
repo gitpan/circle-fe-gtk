@@ -11,7 +11,7 @@ use constant type => "Scroller";
 
 use Glib qw( TRUE FALSE );
 
-use Date::Format qw( strftime );
+use POSIX qw( strftime );
 use Text::Balanced qw( extract_bracketed );
 
 # The perl bindings don't make this very easy

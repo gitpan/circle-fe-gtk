@@ -16,7 +16,7 @@
    "prereqs" : {
       "runtime" : {
          "requires" : {
-            "Date::Format" : "0",
+            "File::ShareDir" : "1.00",
             "Glib" : "0",
             "Gtk2" : "0",
             "IO::Async" : "0.14",
@@ -28,7 +28,7 @@
    "provides" : {
       "Circle::FE::Gtk" : {
          "file" : "lib/Circle/FE/Gtk.pm",
-         "version" : "0.03"
+         "version" : "0.04"
       },
       "Circle::FE::Gtk::Tab" : {
          "file" : "lib/Circle/FE/Gtk/Tab.pm",
@@ -57,5 +57,5 @@
          "http://www.gnu.org/licenses/old-licenses/gpl-1.0.txt"
       ]
    },
-   "version" : "0.03"
+   "version" : "0.04"
 }

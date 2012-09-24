@@ -7,7 +7,6 @@ my $build = Module::Build->new(
    module_name => 'Circle::FE::Gtk',
    dist_name   => 'circle-fe-gtk',
    requires => {
-      'Date::Format' => 0,
       'Glib' => 0,
       'Gtk2' => 0,
       'IO::Async' => '0.14',
@@ -15,6 +14,9 @@ my $build = Module::Build->new(
       'Net::Async::Tangence::Client' => '0.08',
    },
    auto_configure_requires => 0, # Don't add M::B to configure_requires
+   share_dir => {
+      dist => "share",
+   },
    license => 'gpl',
    create_makefile_pl => 'traditional',
    create_license => 1,
