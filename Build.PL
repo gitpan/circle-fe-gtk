@@ -12,6 +12,7 @@ my $build = Module::Build->new(
       'IO::Async' => '0.14',
       'IO::Async::Loop::Glib' => 0,
       'Net::Async::Tangence::Client' => '0.08',
+      'Tangence::ObjectProxy' => '0.18',
    },
    auto_configure_requires => 0, # Don't add M::B to configure_requires
    share_dir => {

@@ -1,6 +1,6 @@
 #  You may distribute under the terms of the GNU General Public License
 #
-#  (C) Paul Evans, 2008-2010 -- leonerd@leonerd.org.uk
+#  (C) Paul Evans, 2008-2013 -- leonerd@leonerd.org.uk
 
 package Circle::FE::Gtk::Tab;
 
@@ -79,7 +79,7 @@ sub build_widget
    my ( $obj ) = @_;
 
    foreach my $type ( widgets ) {
-      next unless $obj->proxy_isa( "Circle::Widget::" . $type->type );
+      next unless $obj->proxy_isa( "Circle.Widget." . $type->type );
       return $type->build( $obj, $self );
    }
 

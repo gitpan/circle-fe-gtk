@@ -10,7 +10,8 @@ WriteMakefile
                    'Gtk2' => 0,
                    'IO::Async' => '0.14',
                    'IO::Async::Loop::Glib' => 0,
-                   'Net::Async::Tangence::Client' => '0.08'
+                   'Net::Async::Tangence::Client' => '0.08',
+                   'Tangence::ObjectProxy' => '0.18'
                  },
   'INSTALLDIRS' => 'site',
   'EXE_FILES' => [
